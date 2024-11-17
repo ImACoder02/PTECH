@@ -1,0 +1,55 @@
+import tkinter as tk
+from tkinter import ttk
+
+class CPUSchedulerApp:
+    def __init__(self, root):
+        self.root = root
+        self.root.title("CPU Scheduling Algorithms")
+        self.create_widgets()
+
+    def create_widgets(self):
+        # Label for title
+        self.title_label = tk.Label(self.root, text="CPU Scheduling Algorithms", font=("Arial", 16))
+        self.title_label.grid(row=0, column=0, columnspan=3)
+
+        # Dropdown or radio buttons for algorithm selection
+        self.algorithm_label = tk.Label(self.root, text="Select Scheduling Algorithm:")
+        self.algorithm_label.grid(row=1, column=0)
+        
+        self.algorithm_var = tk.StringVar()
+        self.algorithm_dropdown = ttk.Combobox(self.root, textvariable=self.algorithm_var)
+        self.algorithm_dropdown['values'] = ('FIFO', 'Round Robin')
+        self.algorithm_dropdown.grid(row=1, column=1)
+
+        # Input fields for process data
+        self.num_processes_label = tk.Label(self.root, text="Number of Processes:")
+        self.num_processes_label.grid(row=2, column=0)
+        self.num_processes_entry = tk.Entry(self.root)
+        self.num_processes_entry.grid(row=2, column=1)
+        
+        self.add_button = tk.Button(self.root, text="Add Process", command=self.add_process)
+        self.add_button.grid(row=2, column=2)
+
+        # Process details table or entry fields
+        self.process_table = ttk.Treeview(self.root, columns=("ID", "Arrival", "Burst"), show="headings")
+        self.process_table.heading("ID", text="Process ID")
+        self.process_table.heading("Arrival", text="Arrival Time")
+        self.process_table.heading("Burst", text="Burst Time")
+        self.process_table.grid(row=3, column=0, columnspan=3)
+
+        # Calculate button
+        self.calculate_button = tk.Button(self.root, text="Calculate", command=self.calculate_schedule)
+        self.calculate_button.grid(row=4, column=1)
+
+    def add_process(self):
+        # Function to add process data
+        pass
+
+    def calculate_schedule(self):
+        # Function to perform scheduling and update output (Gantt chart, tables)
+        pass
+
+# Run the app
+root = tk.Tk()
+app = CPUSchedulerApp(root)
+root.mainloop()
